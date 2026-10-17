@@ -1,0 +1,8 @@
+1.Abrir una terminal en su editor de codigo (sugerimos visual studio code)
+2. Tener Python y PostgreSQL disponibles, con la tabla `Usuario_hostal` ya creada.
+3. Abrir una terminal en esta carpeta.
+4. Ejecutar `py -m pip install -r requirements.txt`.
+5. Copiar `.env.example` a `.env` y reemplazar usuario, contraseña, puerto y nombre de la base de datos. Si la contraseña tiene caracteres especiales como `@`, codificarlos para URL.
+6. Ejecutar `py app.py`.
+7. Abrir `http://127.0.0.1:5000`
+8. no abrir el index.html por aparte
