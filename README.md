@@ -1,1 +1,1 @@
-<em> # Proyecto de Sistemas de Información </em>
+<em> Proyecto de Sistemas de Información </em>
