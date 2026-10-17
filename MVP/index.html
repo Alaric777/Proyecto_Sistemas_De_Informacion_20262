@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de huéspedes | Hostal</title>
+
+    <style>
+        :root {
+            font-family: Inter, system-ui, Arial, sans-serif;
+            color: #19334a;
+            background: #f2f6f9;
+        }
+
+        * { box-sizing: border-box; }
+
+        body { margin: 0; }
+
+        .top {
+            background: #153b50;
+            color: white;
+            padding: 24px max(24px, calc((100vw - 940px)/2));
+        }
+
+        .top h1 {
+            font-size: 24px;
+            margin: 0 0 5px;
+        }
+
+        .top p {
+            margin: 0;
+            color: #c9dce6;
+            font-size: 14px;
+        }
+
+        main {
+            max-width: 940px;
+            margin: 32px auto;
+            padding: 0 20px;
+        }
+
+        .panel {
+            background: white;
+            border: 1px solid #dce6eb;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 8px 30px #173c5010;
+        }
+
+        .intro {
+            margin: 0 0 25px;
+            color: #607889;
+        }
+
+        .section {
+            font-size: 17px;
+            margin: 28px 0 18px;
+            border-bottom: 1px solid #e4ebef;
+            padding-bottom: 12px;
+        }
+
+        .section:first-of-type {
+            margin-top: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 650;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #c9d8e1;
+            border-radius: 8px;
+            background: white;
+            font: inherit;
+            font-size: 14px;
+            color: #19334a;
+        }
+
+        input:focus, select:focus {
+            outline: 2px solid #62a7ad;
+            border-color: transparent;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #6d8490;
+            margin: 7px 0 0;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #e4ebef;
+            padding-top: 24px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 9px;
+            background: #147c80;
+            color: white;
+            font-weight: 700;
+            padding: 14px 22px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0c6265;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #mensaje {
+            font-size: 13px;
+            color: #526c7a;
+        }
+
+        #mensaje.ok {
+            color: #167346;
+        }
+
+        #mensaje.error {
+            color: #b42318;
+        }
+
+        @media(max-width:650px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                padding: 22px;
+            }
+
+            .actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="top">
+    <h1>Registro de huéspedes</h1>
+    <p>Sistema de gestión de alojamiento · Hostal</p>
+</header>
+
+<main>
+    <div class="panel">
+
+        <p class="intro">
+            Completa la información solicitada para registrar tu estancia.
+            Los campos marcados con * son obligatorios.
+        </p>
+
+        <form id="registro">
+
+            <h2 class="section">01 · Información personal</h2>
+
+            <div class="grid">
+
+                <div>
+                    <label for="nombres">Nombres *</label>
+                    <input
+                        id="nombres"
+                        name="Nombres"
+                        maxlength="250"
+                        required
+                        autocomplete="given-name">
+                </div>
+
+                <div>
+                    <label for="apellidos">Apellidos *</label>
+                    <input
+                        id="apellidos"
+                        name="Apellidos"
+                        maxlength="250"
+                        required
+                        autocomplete="family-name">
+                </div>
+
+                <div>
+                    <label for="tipo">Tipo de documento *</label>
+                    <select
+                        id="tipo"
+                        name="Tipo_Documento"
+                        required>
+
+                        <option value="">Selecciona una opción</option>
+                        <option>Cédula de ciudadanía</option>
+                        <option>Cédula de extranjería</option>
+                        <option>Pasaporte</option>
+                        <option>Tarjeta de identidad</option>
+                        <option>Otro</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <label for="numero">Número de documento *</label>
+                    <input
+                        id="numero"
+                        name="Numero_Documento"
+                        maxlength="50"
+                        required>
+                </div>
+
+            </div>
+
+            <h2 class="section">02 · Información de alojamiento</h2>
+
+            <div class="grid">
+
+                <div>
+                    <label for="fecha">Fecha de alojamiento *</label>
+                    <input
+                        id="fecha"
+                        name="Fecha_Arrendamiento"
+                        type="date"
+                        required>
+                </div>
+
+                <div>
+                    <label for="checkout">Fecha y hora de salida</label>
+                    <input
+                        id="checkout"
+                        name="fecha_Checkout"
+                        type="datetime-local">
+
+                    <p class="hint">
+                        Opcional. Se puede registrar al finalizar la estancia.
+                    </p>
+                </div>
+
+                <div>
+                    <label for="origen">Lugar de procedencia *</label>
+                    <input
+                        id="origen"
+                        name="Lugar_Provenida"
+                        maxlength="250"
+                        placeholder="Ciudad o municipio de origen"
+                        required>
+                </div>
+
+                <div>
+                    <label for="destino">Lugar de destino *</label>
+                    <input
+                        id="destino"
+                        name="Lugar_Partida"
+                        maxlength="250"
+                        placeholder="Ciudad o municipio de destino"
+                        required>
+                </div>
+
+            </div>
+
+            <div class="actions">
+
+                <span id="mensaje" role="status" aria-live="polite">
+                    La información se validará antes de enviarse.
+                </span>
+
+                <button type="submit">
+                    Registrar huésped →
+                </button>
+
+            </div>
+
+        </form>
+    </div>
+</main>
+
+<script>
+
+    const form = document.querySelector('#registro');
+    const mensaje = document.querySelector('#mensaje');
+    const boton = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
+
+        e.preventDefault();
+
+        const d = Object.fromEntries(
+            new FormData(form).entries()
+        );
+
+        // Validar fecha de salida
+        if (
+            d.fecha_Checkout &&
+            d.fecha_Checkout.slice(0, 10) < d.Fecha_Arrendamiento
+        ) {
+            mensaje.className = 'error';
+            mensaje.textContent =
+                'La salida no puede ser anterior a la fecha de alojamiento.';
+            return;
+        }
+
+        // Preparar información para PostgreSQL
+        const payload = {
+            ...d,
+            fecha_Checkout: d.fecha_Checkout
+                ? new Date(d.fecha_Checkout).toISOString()
+                : null
+        };
+
+        try {
+
+            boton.disabled = true;
+            mensaje.className = '';
+            mensaje.textContent = 'Guardando información...';
+
+            // Enviar datos al backend Flask
+            const respuesta = await fetch('/api/huespedes', {
+
+                method: 'POST',
+
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify(payload)
+
+            });
+
+            const tipoRespuesta =
+                respuesta.headers.get('content-type') || '';
+
+            if (!tipoRespuesta.includes('application/json')) {
+                throw new Error(
+                    'El servidor no devolvió una respuesta válida. ' +
+                    'Comprueba que exista la ruta /api/huespedes.'
+                );
+            }
+
+            const resultado = await respuesta.json();
+
+            if (!respuesta.ok) {
+                throw new Error(
+                    resultado.error ||
+                    resultado.mensaje ||
+                    'No se pudo registrar el huésped.'
+                );
+            }
+
+            // Registro exitoso
+            mensaje.className = 'ok';
+            mensaje.textContent =
+                '¡Huésped registrado correctamente!';
+
+            form.reset();
+
+        } catch (error) {
+
+            mensaje.className = 'error';
+            mensaje.textContent = 'Error: ' + error.message;
+
+            console.error('Error al registrar:', error);
+
+        } finally {
+
+            boton.disabled = false;
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
