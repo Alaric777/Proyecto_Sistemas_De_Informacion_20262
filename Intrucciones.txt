@@ -5,4 +5,4 @@
 5. Copiar `.env.example` a `.env` y reemplazar usuario, contraseña, puerto y nombre de la base de datos. Si la contraseña tiene caracteres especiales como `@`, codificarlos para URL.
 6. Ejecutar `py app.py`.
 7. Abrir `http://127.0.0.1:5000`
-8. no abrir el index.html por aparte
+8. no abrir el index.html por aparte.
